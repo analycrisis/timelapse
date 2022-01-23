@@ -35,6 +35,9 @@ jobs:
       - name: Save changed files
         run: |
           git diff --name-only origin/main | tee /tmp/changes.filelist.txt
+      - name: Pull
+        run: |
+          git pull "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git" "$GITHUB_REF"
       - name: git push
         run: |
           git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git" "$GITHUB_REF"
